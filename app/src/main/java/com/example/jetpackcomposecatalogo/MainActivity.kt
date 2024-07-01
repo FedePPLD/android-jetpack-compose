@@ -21,6 +21,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TriStateCheckbox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetpackcomposecatalogo.ui.theme.JetpackComposeCatalogoTheme
@@ -39,17 +41,25 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeCatalogoTheme {
+                var selected by rememberSaveable {
+                    mutableStateOf("Test1")
+                }
+
                 Surface(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(top = 50.dp)
+                    modifier = Modifier.fillMaxSize()
                 ) {
-                    MyProgressBarAdvance()
+                    Column() {
+                        MyRadioButtonList(selected, onItemSelected = {
+                            selected = it
+                        })
+                    }
                 }
             }
         }
     }
 }
+
+
 
 
 @Composable
@@ -80,7 +90,8 @@ fun MyComplexLayout() {
             Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .background(Color.Cyan), contentAlignment = Alignment.Center
+                .background(Color.Cyan),
+            contentAlignment = Alignment.Center
         ) {
             Text(text = "Example 1")
         }
@@ -96,7 +107,8 @@ fun MyComplexLayout() {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .background(Color.Red), contentAlignment = Alignment.Center
+                    .background(Color.Red),
+                contentAlignment = Alignment.Center
             ) {
                 Text(text = "Example 2")
             }
@@ -105,9 +117,9 @@ fun MyComplexLayout() {
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
-                    .background(Color.Green), contentAlignment = Alignment.Center
-            )
-            {
+                    .background(Color.Green),
+                contentAlignment = Alignment.Center
+            ) {
                 Text(text = "Example 3")
             }
         }
@@ -118,7 +130,8 @@ fun MyComplexLayout() {
             Modifier
                 .fillMaxWidth()
                 .weight(1f)
-                .background(Color.Magenta), contentAlignment = Alignment.BottomCenter
+                .background(Color.Magenta),
+            contentAlignment = Alignment.BottomCenter
         ) {
             Text(text = "Example 4")
         }
@@ -159,31 +172,36 @@ fun MyColumn() {
     Column(
         Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.SpaceEvenly
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.SpaceEvenly
     ) {
         Text(
-            text = "Ejemplo 1", modifier = Modifier
+            text = "Ejemplo 1",
+            modifier = Modifier
                 .background(Color.Red)
                 .fillMaxWidth()
                 .height(100.dp)
         )
 
         Text(
-            text = "Ejemplo 2", modifier = Modifier
+            text = "Ejemplo 2",
+            modifier = Modifier
                 .background(Color.Black)
                 .fillMaxWidth()
                 .height(100.dp)
         )
 
         Text(
-            text = "Ejemplo 3", modifier = Modifier
+            text = "Ejemplo 3",
+            modifier = Modifier
                 .background(Color.Cyan)
                 .fillMaxWidth()
                 .height(100.dp)
         )
 
         Text(
-            text = "Ejemplo 4", modifier = Modifier
+            text = "Ejemplo 4",
+            modifier = Modifier
                 .background(Color.Blue)
                 .fillMaxWidth()
                 .height(100.dp)
