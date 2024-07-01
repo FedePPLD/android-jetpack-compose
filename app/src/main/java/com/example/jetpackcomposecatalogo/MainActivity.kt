@@ -44,9 +44,9 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .padding(top = 50.dp)
                 ) {
-                    var myText by remember { mutableStateOf("") }
 
-                    MyTextField(myText) { myText = it }
+
+                    MyButtonExample()
                 }
             }
         }
