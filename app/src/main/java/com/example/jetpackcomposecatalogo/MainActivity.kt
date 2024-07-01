@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -43,7 +44,9 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .padding(top = 50.dp)
                 ) {
-                    MyStateExample()
+                    var myText by remember { mutableStateOf("") }
+
+                    MyTextField(myText) { myText = it }
                 }
             }
         }
@@ -208,7 +211,7 @@ fun MyBox() {
     }
 }
 
-@Preview(showBackground = true)
+
 @Composable
 fun GreetingPreview() {
     JetpackComposeCatalogoTheme {
