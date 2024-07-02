@@ -34,28 +34,26 @@ data class CheckInfo(
 
 @Composable
 fun MyRadioButtonList(name: String, onItemSelected: (String) -> Unit) {
-
-
     Column(Modifier.fillMaxWidth()) {
-        Row() {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             RadioButton(name == "Example 1", onClick = { onItemSelected("Example 1") })
 
             Text(text = "Example 1")
         }
 
-        Row() {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             RadioButton(name == "Example 2", onClick = { onItemSelected("Example 2") })
 
             Text(text = "Example 2")
         }
 
-        Row() {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             RadioButton(name == "Example 3", onClick = { onItemSelected("Example 3") })
 
             Text(text = "Example 3")
         }
 
-        Row() {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             RadioButton(name == "Example 4", onClick = { onItemSelected("Example 4") })
 
             Text(text = "Example 4")
@@ -66,7 +64,6 @@ fun MyRadioButtonList(name: String, onItemSelected: (String) -> Unit) {
 
 @Composable
 fun MyRadioButton() {
-
     Row(Modifier.fillMaxWidth()) {
         RadioButton(
             selected = true, onClick = { }, colors = RadioButtonDefaults.colors(

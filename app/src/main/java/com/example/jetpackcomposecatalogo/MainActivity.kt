@@ -1,6 +1,7 @@
 package com.example.jetpackcomposecatalogo
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -36,9 +37,16 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeCatalogoTheme {
-                Surface(
-                ) {
-                    MyRangeSlider()
+                Surface {
+                    var showDialog by rememberSaveable { mutableStateOf(false) }
+                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                        Button(onClick = { showDialog = !showDialog }) {
+                            Text(text = "Show dialog")
+                        }
+                        MyConfirmationDialog(
+                            showDialog,
+                            onDismiss = { showDialog = false })
+                    }
                 }
             }
         }
