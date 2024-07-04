@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -32,21 +33,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.jetpackcomposecatalogo.ui.theme.JetpackComposeCatalogoTheme
 
+@ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeCatalogoTheme {
                 Surface {
-                    var showDialog by rememberSaveable { mutableStateOf(false) }
-                    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Button(onClick = { showDialog = !showDialog }) {
-                            Text(text = "Show dialog")
-                        }
-                        MyConfirmationDialog(
-                            showDialog,
-                            onDismiss = { showDialog = false })
-                    }
+                    SuperHeroStickyView()
                 }
             }
         }
