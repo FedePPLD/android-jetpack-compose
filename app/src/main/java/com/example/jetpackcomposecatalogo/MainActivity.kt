@@ -1,7 +1,7 @@
 package com.example.jetpackcomposecatalogo
 
+import ScaffoldExample
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetpackComposeCatalogoTheme {
                 Surface {
-                    SuperHeroStickyView()
+                    ScaffoldExample()
                 }
             }
         }
