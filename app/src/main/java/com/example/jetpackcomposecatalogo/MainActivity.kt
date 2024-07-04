@@ -1,6 +1,5 @@
 package com.example.jetpackcomposecatalogo
 
-import ScaffoldExample
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -31,6 +30,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.jetpackcomposecatalogo.model.Routes
 import com.example.jetpackcomposecatalogo.ui.theme.JetpackComposeCatalogoTheme
 
 @ExperimentalFoundationApi
@@ -40,7 +45,33 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetpackComposeCatalogoTheme {
                 Surface {
-                    ScaffoldExample()
+                    val navigationControler = rememberNavController()
+                    NavHost(
+                        navController = navigationControler,
+                        startDestination = Routes.Screen1Route.route
+                    ) {
+                        composable(Routes.Screen1Route.route) { Screen1(navigationControler) }
+                        composable(Routes.Screen2Route.route) { Screen2(navigationControler) }
+                        composable(Routes.Screen3Route.route) { Screen3(navigationControler) }
+                        composable(
+                            Routes.Screen4Route.route,
+                            arguments = listOf(navArgument("age") { type = NavType.IntType })
+                        ) { backStackEntry ->
+                            Screen4(
+                                navigationControler = navigationControler,
+                                backStackEntry.arguments?.getInt("age") ?: 0
+                            )
+                        }
+                        composable(
+                            Routes.Screen5Route.route,
+                            arguments = listOf(navArgument("name") { defaultValue = "" })
+                        ) { backStackEntry ->
+                            Screen5(
+                                navigationControler = navigationControler,
+                                backStackEntry.arguments?.getString("name")
+                            )
+                        }
+                    }
                 }
             }
         }
