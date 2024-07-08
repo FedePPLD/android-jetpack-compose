@@ -14,17 +14,7 @@ import com.example.jetpackcomposecatalogo.model.Routes
 
 @Composable
 fun Screen1(navigationControler: NavHostController) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Cyan)
-    ) {
-        Text(
-            text = "Screen 1",
-            modifier = Modifier
-                .align(Alignment.Center)
-                .clickable { navigationControler.navigate(Routes.Screen2Route.route) })
-    }
+    CrossfadeExample()
 }
 
 @Composable

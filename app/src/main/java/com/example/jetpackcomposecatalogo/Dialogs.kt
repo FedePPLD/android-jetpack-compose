@@ -1,6 +1,5 @@
 package com.example.jetpackcomposecatalogo
 
-import android.app.Dialog
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -50,7 +48,8 @@ fun MyConfirmationDialog(show: Boolean, onDismiss: () -> Unit) {
                 Row(
                     Modifier
                         .align(Alignment.End)
-                        .padding(8.dp)) {
+                        .padding(8.dp)
+                ) {
                     TextButton(onClick = { onDismiss() }) {
                         Text(text = "Cancel")
                     }
